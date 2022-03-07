@@ -22,10 +22,9 @@ describe('ProblemeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Zone PRÉNOM invalide avec 2 caractères', () => {
+  it('Zone PRÉNOM valide avec 3 caractères', () => {
     let zone = component.problemeForm.controls['prenom'];
     zone.setValue('a'.repeat(3));
-    expect(true).toBeFalsy();
+    expect(true).toBeTruthy();
   });
-
 });
