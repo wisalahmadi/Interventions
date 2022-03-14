@@ -1,17 +1,50 @@
 <div class="container">
-    <br/>
+    <br />
     <div class="card">
         <div class="card-header text-white bg-secondary">
             <!-- L'en-tête ici -->
         </div>
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
         </div>
+
+        <div class="card-text">
+            <form class="form-horizontal" 
+            novalidate 
+            (ngSubmit)="save()" 
+            [formGroup]="problemeForm">
+                <!-- Zone de texte PRENOM -->
+                <div class="form-group row">
+                    <label for="prenomId" class="col-md-2 col-form-label text-right">Prénom :</label>
+                    <div class="col-md-10">
+                        <!-- Les 2 validateurs maison agissent sur la propriété valid. Pas besoin de les coder ici -->
+                        <input class="form-control" 
+                        id="prenomId" 
+                        type="text" 
+                        placeholder="Votre prénom ici (obligatoire)"
+                        formControlName="prenom" 
+                        [ngClass]="{'is-valid': (problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && problemeForm.get('prenom').valid,
+                        'is-invalid': (problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && !problemeForm.get('prenom').valid}" />
+                    </div>
+                    
+                    <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && (problemeForm.get('prenom').errors)">
+                        <span *ngIf=" problemeForm.get('prenom').errors['required']">
+                            <small class="text-muted">
+                                Merci de saisir votre prénom.
+                            </small>
+                        </span>
+                    </span>
+                </div>
+
+                
+            </form>
+        </div>
+
         <div class="card-footer">
             <!-- Bouton save ici -->
             <button class="btn btn-primary" type="submit">
-                  Sauvegarder
+                Sauvegarder
             </button>
         </div>
     </div>
