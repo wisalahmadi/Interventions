@@ -23,24 +23,51 @@
                         id="prenomId" 
                         type="text" 
                         placeholder="Votre prénom ici (obligatoire)"
-                        formControlName="prenom" 
+                        rmControlName="prenom" 
                         [ngClass]="{'is-valid': (problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && problemeForm.get('prenom').valid,
                         'is-invalid': (problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && !problemeForm.get('prenom').valid}" />
                     </div>
                     
-                    <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || problemeForm.get('prenom').dirty) && (problemeForm.get('prenom').errors)">
+                    <span class="form-text" *ngIf="(problemeForm.get('prenom').touched ||
+                    problemeForm.get('prenom').dirty) &&
+                    (problemeForm.get('prenom').errors)">
                         <span *ngIf=" problemeForm.get('prenom').errors['required']">
                             <small class="text-muted">
                                 Merci de saisir votre prénom.
                             </small>
                         </span>
-                    </span>
-                </div>
+                        <span *ngIf="problemeForm.get('prenom').errors['nbreCaracteresInsuffisant']">
+                            <small class="text-muted">
+                                Veuillez entrer plus de caractères.
+                            </small>
+                        </span>
+                    </span> 
+                    <label for="prenomId" class="col-md-2 col-form-label text-right">Nom :</label>
+                    <div class="col-md-10">
+                       
+                        <input class="form-control" 
+                        id="nomId" 
+                        type="text" 
+                        placeholder="Votre nom ici (obligatoire)"
+                        formControlName="prenom" 
+                        />
+                    </div>
 
-                
+                </div>
+                <div class="form-group row">
+                    <label for="typeProblemeId" class="col-md-2 col-form-label text-right">Type de problème :</label>
+                    <div class="col-md-10">
+                        <!-- Les 2 validateurs maison agissent sur la propriété valid. Pas besoin de les coder ici -->
+                        <select class="form-control" > 
+                        <option value="">Sélectionner un type ^-de problème(obligatoire)...</option>
+                        <option *ngFor="let tp of typesProbleme" [value]="tp.id">{{tp.descriptionTypeProbleme}}</option>                                                        
+                        </select>
+
+
+                    </div>  
+                </div>               
             </form>
         </div>
-
         <div class="card-footer">
             <!-- Bouton save ici -->
             <button class="btn btn-primary" type="submit">
