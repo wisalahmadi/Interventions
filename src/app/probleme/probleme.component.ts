@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators , FormGroup } from '@angular/forms';
+import { FormBuilder,Validators , FormGroup, EmailValidator } from '@angular/forms';
+import { emailMatcherValidator } from '../shared/valiaterzones/email-matcher.component';
 import { VerifierCaracteresValidator } from '../shared/valiaterzones/longueur-minimum.component';
 import { ITypeProbleme } from './typeprobleme';
 import { TypeproblemeService } from './typeprobleme.service';
@@ -66,13 +67,13 @@ export class ProblemeComponent implements OnInit {
             courrielConfirmation.enable();  
             // Si le validateur est dans un autre fichier l'écire sous la forme suivante : 
             // ...Validators.compose([classeDuValidateur.NomDeLaMethode()])])
-          //  courrielGroupControl.setValidators([Validators.compose([])]);                       
+            courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
       }
-  
       else
       {
-        if(typeNotification === 'parTelephone')
+        if(typeNotification === 'parTelephone' || typeNotification === 'parMessage' )
         {
+          telephone.setValidators([Validators.required,Validators.pattern('[0-9]+')]);  
           telephone.setValidators([Validators.required]);   
           telephone.enable();               
         }
