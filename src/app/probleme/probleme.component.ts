@@ -30,11 +30,15 @@ export class ProblemeComponent implements OnInit {
         courrielConfirmation: [{value: '', disabled: true}],
       }),
     telephone: [{value: '', disabled: true}],
+
+    notification: ['pasnotification'],
+
     })
     this.typeproblemeService.obtenirTypesProbleme()
         .subscribe(typesProbleme => this.typesProbleme = typesProbleme,
                    error => this.errorMessage = <any>error);  
-          
+    
+                   
    
   }
   save(): void{} 
@@ -69,15 +73,27 @@ export class ProblemeComponent implements OnInit {
             // ...Validators.compose([classeDuValidateur.NomDeLaMethode()])])
             courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
       }
-      else
+     
+      if(typeNotification === 'parTelephone' || typeNotification === 'parMessage' )
       {
-        if(typeNotification === 'parTelephone' || typeNotification === 'parMessage' )
-        {
-          telephone.setValidators([Validators.required,Validators.pattern('[0-9]+')]);  
-          telephone.setValidators([Validators.required]);   
-          telephone.enable();               
-        }
+        telephone.setValidators([Validators.required,Validators.pattern('[0-9]+')]);  
+        telephone.setValidators([Validators.required]);   
+        telephone.enable();               
       }
+      else if(typeNotification === 'inconnu'){
+
+        telephone.setValidators([Validators.required,Validators.pattern('[0-9]+')]);  
+        telephone.setValidators([Validators.required]);   
+        telephone.disable(); 
+
+
+        courriel.setValidators([Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);      
+        courriel.disable();  
+        courrielConfirmation.setValidators([Validators.required]);              
+        courrielConfirmation.disable();  
+        courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);     
+      }
+      
     courriel.updateValueAndValidity();   
     courrielConfirmation.updateValueAndValidity();     
     
