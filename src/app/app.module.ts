@@ -8,7 +8,6 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProblemeData } from './probleme/probleme-data';
 
 
@@ -22,7 +21,6 @@ import { ProblemeData } from './probleme/probleme-data';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(ProblemeData, { delay: 1000 }),
     HttpClientModule
   ],
   providers: [],

@@ -9,7 +9,10 @@ import { ITypeProbleme } from './typeprobleme';
 })
 export class TypeproblemeService {
 
-  private baseUrl = 'api/typesprobleme';
+  // private baseUrl = 'https://localhost:7098/Interventiont';
+  
+  private baseUrl = 'https://interventions2021.azurewebsites.net/Interventiont';
+
   constructor(private _http:HttpClient) { }
   obtenirTypesProbleme(): Observable<ITypeProbleme[]> {
     return this._http.get<ITypeProbleme[]>(this.baseUrl).pipe(

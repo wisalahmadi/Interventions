@@ -75,63 +75,6 @@ describe('ProblemeComponent', () => {
     expect(zone.valid).toBeFalsy();
   });
 
-   // TEST #7
- it('#7 | Une chaîne avec 10 espaces est invalide', () => {
-  let control = { value: ' '}
-  let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-  let result= validatorFn(control as AbstractControl);
-  expect(result['nbreCaracteresInsuffisant']).toBe(true);
-});
-   // TEST #8
-   it('#8 | Une phrase avec des mots est valide', () => {
-    let control = { value: 'Vive angular' }
-    let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-    let result= validatorFn(control as AbstractControl);
-    expect(control.value).toBeTruthy;
-  });
-  // TEST #9
-  it('#9 | Une phrase avec 3 espaces, des mots et ensuite 3 espaces est valide', () => {
-    let control = { value: ' je le veux ' }
-    let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-    let result= validatorFn(control as AbstractControl);
-    expect(control.value).toBeTruthy;
-  });
-    // TEST #10
-    it('#10 | Une phrase avec 1 espace et 2 caractères est invalide.', () => {
-      let control = { value: ' xx' }
-      let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-      let result= validatorFn(control as AbstractControl);
-      expect(result['nbreCaracteresInsuffisant']).toBe(true);
-    });
-      // TEST #11
-  it('#11 | Une phrase avec 2 espaces et 1 caractère est invalide', () => {
-    let control = { value: '  x'}
-    let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-    let result= validatorFn(control as AbstractControl);
-    expect(result['nbreCaracteresInsuffisant']).toBeTruthy();
-  });
-    // TEST #12
-    it('#12 | Une phrase avec 3 espaces et 3 caractères est valide', () => {
-      let control = { value: '   xxx'}
-      let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-      let result= validatorFn(control as AbstractControl);
-      expect(control.value).toBeTruthy;
-    });
-      // TEST #13
-  it('#13 | Une phrase avec 5 espaces, 5 caractères et 5 espaces est valide', () => {
-    let control = { value: '     xxxxx     '}
-    let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-    let result= validatorFn(control as AbstractControl);
-    expect(control.value).toBeTruthy;
-  });
-    // TEST #14
-    it('#14 | Une chaîne nulle est invalide', () => {
-      let control = {};
-      let validatorFn =  VerifierCaracteresValidator.longueurMinimum(3);
-      let result= validatorFn(control as AbstractControl);
-      expect(result['nbreCaracteresInsuffisant']).toBeFalse;
-    });
-
     // TEST #15
     it('#15 | Zone TELEPHONE est désactivée quand ne pas me notifier', () => {
       component.gestionNotification('typeNotification');
@@ -292,7 +235,7 @@ describe('ProblemeComponent', () => {
       component.gestionNotification('parMessage');
       let zone = component.problemeForm.get('telephone');
       zone.setValue('abc');
-      expect(zone.valid).toBeFalsy
+      expect(zone.valid).toBeFalsy();
     });
 
     // TEST #34
@@ -300,23 +243,22 @@ describe('ProblemeComponent', () => {
       component.gestionNotification('parMessage');
       let zone = component.problemeForm.get('telephone');
       zone.setValue('999999999');
-      expect(zone.valid).toBeFalsy
+      expect(zone.valid).toBeFalsy();
     });
 
     // TEST #35
     it('#35 | Zone TELEPHONE est invalide avec 11 chiffres consécutifs quand notifier par messagerie texte', () => {
-    component.gestionNotification('parMessage');
-    let zone = component.problemeForm.get('telephone');
-    zone.setValue('99999999999');
-    expect(zone.valid).toBeFalsy
-  });
+      component.gestionNotification('parMessage');
+      let zone = component.problemeForm.get('telephone');
+      zone.setValue('99999999999');
+      expect(zone.valid).toBeFalsy();
+      });
     // TEST #35
     it('#36 | Zone TELEPHONE est valide avec 10 chiffres consécutifs quand notifier par messagerie texte', () => {
       component.gestionNotification('parMessage');
       let zone = component.problemeForm.get('telephone');
       zone.setValue('9999999999');
-      expect(zone.valid).toBeTruthy
+      expect(zone.valid).toBeTruthy();
     });
-
 });
-
+// 8, 9 , 13, 14
